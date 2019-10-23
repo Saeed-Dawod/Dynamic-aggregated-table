@@ -10,12 +10,15 @@ export interface DynamicInput {
   showThreshold: boolean;
   showTrend: boolean;
   defaultValues: boolean;
+
 }
 
 interface DynamicProps {
   onSubmitThresholdHandler?: any;
   onSubmitTrendHandler?: any;
+
 }
+
 
 export default class DynamicThresholds extends React.Component<DynamicProps, DynamicInput> {
   state: DynamicInput = {
@@ -26,6 +29,7 @@ export default class DynamicThresholds extends React.Component<DynamicProps, Dyn
     showThreshold: false,
     showTrend: false,
     defaultValues: true,
+
   };
 
 
@@ -33,29 +37,36 @@ export default class DynamicThresholds extends React.Component<DynamicProps, Dyn
     e.preventDefault();
     this.setState({
       defaultValues: false,
+      showThreshold: false,
     });
+
     this.props.onSubmitThresholdHandler([this.state.thresHoldMax, this.state.thresHoldMin]);
+
   }
 
   handleTrendSubmit(e: any) {
     e.preventDefault();
     this.setState({
       defaultValues: false,
+      showTrend: false,
     });
+
     this.props.onSubmitTrendHandler([this.state.trendMax, this.state.trendMin]);
-    console.log(`trend changed`);
+
   }
 
   changeThreshold = () => {
     this.setState({
       showThreshold: !this.state.showThreshold ? true : false,
     });
+
   };
 
   changeTrend = () => {
     this.setState({
       showTrend: !this.state.showTrend ? true : false,
     });
+
   };
 
   restToDeafult = () => {
@@ -67,13 +78,16 @@ export default class DynamicThresholds extends React.Component<DynamicProps, Dyn
       showThreshold: false,
       showTrend: false,
     });
-    if (this.state.thresHoldMax == '0.7' && this.state.thresHoldMin == '0.4' && this.state.trendMax =='0.03' && this.state.trendMin==='-0.03'){
+
+    if (this.state.thresHoldMax == '0.7' && this.state.thresHoldMin == '0.4' && this.state.trendMax == '0.03' && this.state.trendMin === '-0.03') {
       this.setState({
         defaultValues: true,
       });
+
     }
     this.props.onSubmitThresholdHandler([this.state.thresHoldMax, this.state.thresHoldMin]);
     this.props.onSubmitTrendHandler([this.state.trendMax, this.state.trendMin]);
+
   };
 
   render() {

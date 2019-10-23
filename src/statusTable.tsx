@@ -19,8 +19,6 @@ import { SeriesData } from '@grafana/ui/types/data';
 import { InterpolateFunction } from '@grafana/ui/types/panel';
 
 
-
-
 export interface Props extends Themeable {
   data: SeriesData;
 
@@ -38,7 +36,6 @@ export interface Props extends Themeable {
   dynamicThreshold?: any;
   dynamicTrend?: any;
 }
-
 
 interface DataIndex {
   column: number;
@@ -146,22 +143,20 @@ export class StatusTable extends Component<Props> {
     const rowData = isHeader ? data.fields : data.rows[row];
     const value = rowData ? rowData[column] : '';
     const builder = isHeader ? this.headerBuilder : this.getTableCellBuilder(column);
-
-
+    props.dynamicThreshold=this.props.dynamicThreshold;
+    props.dynamicTrend=this.props.dynamicTrend;
     return (
       <CellMeasurer cache={this.measurer} columnIndex={columnIndex} key={key} parent={parent} rowIndex={rowIndex}>
-        {builder({
+        {
+          builder({
           value,
           row: rowData,
           column: data.fields[column],
-          tresholds: this.props.dynamicThreshold,
-          trend: this.props.dynamicTrend,
           props,
         })}
       </CellMeasurer>
     );
   };
-
 
   getColumnWidth = (col: Index): number => {
     return Math.max((this.props.width - 10) / this.props.data.fields.length, this.props.minColumnWidth);

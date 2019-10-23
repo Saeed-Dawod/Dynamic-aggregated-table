@@ -24,6 +24,7 @@ export class statusTableEditor extends PureComponent <PanelEditorProps<Options>>
     this.props.options['threshold'] = target.value;
     this.props.onOptionsChange({ ...this.props.options, threshold: target.value });
   };
+
   onSwitchChange = () => {
     this.props.onOptionsChange({
       ...this.props.options,
@@ -36,7 +37,6 @@ export class statusTableEditor extends PureComponent <PanelEditorProps<Options>>
   onThresholdsChanged = (thresholds: Threshold[]) => {
     console.log(thresholds);
   };
-
 
   render() {
     const { showOrder } = this.props.options;
