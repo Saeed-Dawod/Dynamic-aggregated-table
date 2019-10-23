@@ -60,7 +60,6 @@ export default class DynamicThresholds extends React.Component<DynamicProps, Dyn
 
   restToDeafult = () => {
     this.setState({
-      defaultValues: true,
       thresHoldMax: '0.7',
       thresHoldMin: '0.4',
       trendMax: '0.03',
@@ -68,11 +67,11 @@ export default class DynamicThresholds extends React.Component<DynamicProps, Dyn
       showThreshold: false,
       showTrend: false,
     });
-    console.log(
-      `Threshold changed max ${this.state.thresHoldMax} , threshold Min ${
-        this.state.thresHoldMin
-      } , trend min/max ${this.state.trendMin}`,
-    );
+    if (this.state.thresHoldMax == '0.7' && this.state.thresHoldMin == '0.4' && this.state.trendMax =='0.03' && this.state.trendMin==='-0.03'){
+      this.setState({
+        defaultValues: true,
+      });
+    }
     this.props.onSubmitThresholdHandler([this.state.thresHoldMax, this.state.thresHoldMin]);
     this.props.onSubmitTrendHandler([this.state.trendMax, this.state.trendMin]);
   };
