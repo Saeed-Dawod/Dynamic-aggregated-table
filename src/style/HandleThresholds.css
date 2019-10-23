@@ -1,0 +1,9 @@
+.main-holder {
+    display: flex;
+    opacity: 0.5;
+}
+
+.from-style{
+    backgroundColor: #161719;
+    display: flex;
+}

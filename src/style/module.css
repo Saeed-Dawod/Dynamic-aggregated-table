@@ -1,0 +1,53 @@
+table.table-wrapper {
+    width: 100%;
+}
+
+thead.table-header-wrapper {
+    background: #eee;
+    color: #000;
+    font-size: 18px;
+}
+
+tbody.table-body-wrapper {
+    background: #cdcccc;
+    color: #000;
+    font-size: 14px;
+}
+
+.green {
+	background-color: green;
+}
+
+.red {
+	background-color: red;
+}
+.no-data{
+	display: flex;
+	flex:1 100%;
+	font-size: 40px;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.section.atb-settings {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.section.atb-settings .section-heading {
+    font-size: 20px;
+    color: #fff;
+    text-transform: capitalize;
+    flex: 1 100%;
+}
+
+.section.atb-settings .gf-form-switch-container-react {
+    margin: 5px
+    
+}
+
+.section.atb-settings .panel-options-group {
+    margin: 5px
+}
