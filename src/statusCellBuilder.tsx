@@ -3,12 +3,10 @@ import React from 'react';
 import numeral from 'numeral';
 
 
-
 /** Simplest cell that just spits out the value */
 export const StatusCellBuilder: TableCellBuilder = (cell: TableCellBuilderOptions) => {
-  const { props, value, className,  } = cell;
-  console.log(props);
-  const { style,dynamicThreshold,dynamicTrend } = props;
+  const { props, value, className } = cell;
+  const { style, dynamicThreshold, dynamicTrend } = props;
 
   // Get difference bettwen 5 weeks ago and this week in one value.
 
@@ -63,7 +61,8 @@ export const StatusCellBuilder: TableCellBuilder = (cell: TableCellBuilderOption
 
   return (
     <div style={{ ...style, padding: '10px', background: getBgColor(value) }} className={'gf-table-cell ' + className}>
-      <span style={{ color: getColor(value), fontWeight: 'bold' }}>{getValue(value)}</span> {getTrend(value)}
+      <span className=''
+            style={{ color: getColor(value), fontWeight: 'bold' }}>{getValue(value)} </span> {getTrend(value)}
     </div>
   );
 };
@@ -72,9 +71,31 @@ export const rowCellBuilder: TableCellBuilder = (cell: TableCellBuilderOptions) 
   const { props, value, className } = cell;
   const { style } = props;
 
+  const titlesMap = {
+    'BR': 'the percentage of visitors to a website who navigate away from the site after viewing only one page.',
+    'CTR': 'click rate per vertical ',
+    'Commission': 'according to click date (unified date)',
+    'EPV': 'revenue per visit',
+    'FCP': 'First Contentful Paint',
+    'FID': ' First Input Delay',
+    'Traffic': ' # of visits per vertical ',
+  };
+
+  let desBarTitle = 'N/A';
+
+  if (titlesMap.hasOwnProperty(value)) {
+    desBarTitle = titlesMap[value];
+  }
+
+  const descriptionBar = (
+    <div title={desBarTitle} style={{ opacity: 0.6 }} className="panel-info-corner panel-info-corner--info"><i
+      className="fa"></i><span
+      className="panel-info-corner-inner"></span></div>);
+
   return (
     <div style={{ ...style, fontWeight: 'bold', padding: '10px' }} className={'gf-table-cell ' + className}>
-      <span>{value || 'n\\a'}</span>
+      <span>  {descriptionBar} {value || 'n\\a'}</span>
+
     </div>
   );
 };
